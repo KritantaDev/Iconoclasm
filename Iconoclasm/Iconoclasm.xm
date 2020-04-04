@@ -3,21 +3,25 @@
  */
 
 #include "Iconoclasm.h"
-CHDeclareClass(SBIconListView);
-CHDeclareClass(SBRootIconListView);
-CHDeclareClass(SBFolderIconListView);
-CHDeclareClass(SBDockIconListView);
-CHDeclareClass(SBNewsstandIconListView);
-CHDeclareClass(SBIconListModel);
-CHDeclareClass(SpringBoard);
-CHDeclareClass(SBIconModel);
-CHDeclareClass(ICIconListView);
-CHDeclareClass(SBRootFolder);
-CHDeclareClass(SBIconController);
-CHDeclareClass(SBIconContentView);
-CHDeclareClass(SBIconView);
-CHDeclareClass(SBFolderIcon);
-
+#include <objc/runtime.h>
+//CHDeclareClass(SBIconListView);
+//CHDeclareClass(SBRootIconListView);
+//CHDeclareClass(SBFolderIconListView);
+//CHDeclareClass(SBDockIconListView);
+//CHDeclareClass(SBNewsstandIconListView);
+//CHDeclareClass(SBIconListModel);
+//CHDeclareClass(SpringBoard);
+//CHDeclareClass(SBIconModel);
+////CHDeclareClass(ICIconListView);
+//CHDeclareClass(SBRootFolder);
+//CHDeclareClass(SBIconController);
+//CHDeclareClass(SBIconContentView);
+//CHDeclareClass(SBIconView);
+//CHDeclareClass(SBFolderIcon);
+struct SBIconCoordinate {
+  NSUInteger row;
+  NSUInteger col;
+};
 @interface SBDockIconListView
 -(CGFloat) horizontalIconPadding;
 -(CGFloat) sideIconInset;
@@ -32,7 +36,7 @@ static BOOL infinidockDylibSpotted() {
 
 // indexOfList takes an icon list model
 #define indexOfList(iL) ((kCFCoreFoundationVersionNumber < 790.00) ? (NSUInteger)[[SBIMINSTANCE rootFolder] indexOfIconList:iL] : (NSUInteger)[[SBIMINSTANCE rootFolder] indexOfList:iL])
-#define indexPath(s, r) ((kCFCoreFoundationVersionNumber < 790.00) ? [objc_getClass("SBIconIndexPath") indexPathWithIconIndex:r listIndex:s] : [NSIndexPath indexPathForRow:r inSection:s])
+#define indexPath(s, r) ((kCFCoreFoundationVersionNumber < 790.00) ? [%c(SBIconIndexPath) indexPathWithIconIndex:r listIndex:s] : [NSIndexPath indexPathForRow:r inSection:s])
 #define REMAINDER(array, startIndex) [array subarrayWithRange:NSMakeRange(startIndex, [array count]-startIndex)]
 
 static id<ICLayout> defaultLayout = nil;
@@ -73,6 +77,27 @@ static NSDictionary* fallbackLayout() {
 #pragma mark "HOOKS"
 /**********************/
 
+%hook SBIconListView 
+-(CGPoint)originForIconAtX:(int)x Y:(int)y 
+{
+    if ([self class] == %c(ICIconListView))
+      return %orig;
+    if (notVirginView(self))
+      return %orig;
+    if (perPageOn) return [ppp(self) pointForX:x Y:y inIconList:(UIView*)self];
+    return [defaultLayout pointForX:x Y:y inIconList:(UIView*)self];
+}
+-(CGPoint)originForIconAtCoordinate:(SBIconCoordinate)coord 
+{
+  int page = indexOfList([self model]);
+  int x = coord.col-1;
+  int y = coord.row-1;
+  if (perPageOn) return [ppp(self) pointForX:x Y:y inIconList:(UIView*)self];
+  CGPoint origin = [defaultLayout pointForX:x Y:y inIconList:(UIView*)self];
+  return [defaultLayout pointForX:x Y:y inIconList:(UIView*)self];
+}
+%end
+/*
 CHClassMethod1(int, SBIconListView, iconRowsForInterfaceOrientation, int, interfaceOrientation) {
   if (perPageOn) return perPageMaxIcons;
   return [defaultLayout iconRowsForInterfaceOrientation:interfaceOrientation];
@@ -94,7 +119,7 @@ CHClassMethod1(int, SBRootIconListView, iconColumnsForInterfaceOrientation, int,
 }
 
 CHMethod2(CGPoint, SBIconListView, originForIconAtX, int, x, Y, int, y) {
-  if ([self class] == CHClass(ICIconListView))
+  if ([self class] == %c(ICIconListView))
     return CHSuper2(SBIconListView, originForIconAtX, x, Y, y);
   if (notVirginView(self))
     return CHSuper2(SBIconListView, originForIconAtX, x, Y, y);
@@ -108,7 +133,7 @@ struct SBIconCoordinate {
 };
 
 CHMethod1(CGPoint, SBRootIconListView, originForIconAtCoordinate, SBIconCoordinate, coord) {
-  if ([self isKindOfClass:objc_getClass("SBDockIconListView")]) {
+  if ([self isKindOfClass:%c(SBDockIconListView)]) {
     CGPoint orig = CHSuper1(SBRootIconListView, originForIconAtCoordinate, coord);
     if (isiPad) {
       orig.y = 20;
@@ -123,30 +148,6 @@ CHMethod1(CGPoint, SBRootIconListView, originForIconAtCoordinate, SBIconCoordina
   return [defaultLayout pointForX:x Y:y inIconList:(UIView*)self];
 }
 
-CHMethod0(CGFloat, SBDockIconListView, horizontalIconPadding) {
-  // No bug on iPhone so just return the usual
-  if (!isiPad)
-    return CHSuper0(SBDockIconListView, horizontalIconPadding);
-
-  NSUInteger iconCount = (NSUInteger)[self iconsInRowForSpacingCalculation];
-  int orientation = 0;
-  object_getInstanceVariable(self, "_orientation", (void**)&orientation);
-
-  if (orientation <= 2) {
-    // Portrait
-    switch (iconCount) {
-      case 5: return 56;
-      case 6: return 44;
-      default: return 100;
-    }
-  } else {
-    // Landscape
-    if (iconCount == 6)
-      return 80;
-    else
-      return 120;
-  }
-}
 
 CHMethod0(CGFloat, SBDockIconListView, _additionalSideInsetToCenterIcons) {
   // No bug on iPhone so just return the usual
@@ -159,7 +160,7 @@ CHMethod0(CGFloat, SBDockIconListView, _additionalSideInsetToCenterIcons) {
 
   CGFloat dockWidth = ((CGRect)([self bounds])).size.width;
 
-  CGFloat iconWidth = ((CGSize)([CHClass(SBIconView) defaultIconSize])).width;
+  CGFloat iconWidth = ((CGSize)([%c(SBIconView) defaultIconSize])).width;
   CGFloat horizPadding = ((CGFloat)([self horizontalIconPadding]));
   CGFloat sideIconInset = ((CGFloat)([self sideIconInset]));
   return (dockWidth - (iconWidth * iconCount) - (horizPadding * (iconCount - 1)) - (2 * sideIconInset)) / 2;
@@ -181,14 +182,14 @@ CHMethod1(int, SBIconListView, rowAtPoint, CGPoint, point) {
 
 CHMethod0(void, SBIconContentView, layoutSubviews) {
   CHSuper0(SBIconContentView, layoutSubviews);
-  [defaultLayout recacheWithIconList:[[CHClass(SBIconController) sharedInstance] rootIconListAtIndex:0]];
+  [defaultLayout recacheWithIconList:[[%c(SBIconController) sharedInstance] rootIconListAtIndex:0]];
 }
-
+*/
 
 /**************************/
 #pragma mark "DEVELOPER API"
 /**************************/
-
+/*
 CHClassMethod1(int, ICIconListView, iconRowsForInterfaceOrientation, int, interfaceOrientation) {
   return [extrasLayout iconRowsForInterfaceOrientation:interfaceOrientation];
 }
@@ -208,12 +209,12 @@ CHMethod1(int, ICIconListView, columnAtPoint, CGPoint, point) {
 CHMethod1(int, ICIconListView, rowAtPoint, CGPoint, point) {
   return [extrasLayout rowAtPoint:point inIconList:(UIView*)self];
 }
-
+*/
 /**********************/
 #pragma mark "PER-PAGE STUFFS"
 /**********************/
 
-#define isNullIcon(i) ([i isKindOfClass:objc_getClass("SBDestinationHole")] || [i isKindOfClass:objc_getClass("SBNullIcon")])
+#define isNullIcon(i) ([i isKindOfClass:%c(SBDestinationHole)] || [i isKindOfClass:%c(SBNullIcon)])
 
 #define isRealIcon(i) !isNullIcon(i)
 
@@ -227,13 +228,13 @@ static int realIconCount(id model) {
   }
   return realIcons;
 }
-
-CHMethod2(id, SBIconListModel, insertIcon, id, icon, atIndex, unsigned*, index) {
-  // Before and after have accurate icon counts; before has a null icon at the destination slot, after doesn't
-  id sup = CHSuper2(SBIconListModel, insertIcon, icon, atIndex, index);
+%hook SBIconListModel 
+-(id)insertIcon:(id)icon atIndex:(unsigned*)index 
+{
+    id sup = %orig;
   if (notVirginModel(self)) return sup;
   if (kCFCoreFoundationVersionNumber > 800)
-    if (![[self folder] isEqual:[[CHClass(SBIconController) sharedInstance] rootFolder]]) 
+    if (![[self folder] isEqual:[[%c(SBIconController) sharedInstance] rootFolder]]) 
       return sup;
   // After super is called, get a subarray of icons where index >= maxIcons
   NSUInteger whichPage = indexOfList(self);
@@ -253,8 +254,54 @@ CHMethod2(id, SBIconListModel, insertIcon, id, icon, atIndex, unsigned*, index) 
   }
   return sup;
 }
-
-
+%end
+/*
+CHMethod2(id, SBIconListModel, insertIcon, id, icon, atIndex, unsigned*, index) {
+  // Before and after have accurate icon counts; before has a null icon at the destination slot, after doesn't
+  id sup = CHSuper2(SBIconListModel, insertIcon, icon, atIndex, index);
+  if (notVirginModel(self)) return sup;
+  if (kCFCoreFoundationVersionNumber > 800)
+    if (![[self folder] isEqual:[[%c(SBIconController) sharedInstance] rootFolder]]) 
+      return sup;
+  // After super is called, get a subarray of icons where index >= maxIcons
+  NSUInteger whichPage = indexOfList(self);
+  if (whichPage == UINT_MAX) return sup;
+  int maxIcons = [[pp(whichPage) origins] count];
+  if (realIconCount(self) <= maxIcons)
+    return sup;
+  int end = [[self icons] count] - maxIcons;
+  NSArray* overflowing = [[self icons] subarrayWithRange:NSMakeRange(maxIcons, end)];
+  // Reverse array, remove icon from this icon list, insert at index 0 of next list
+  NSEnumerator* enumerator = [overflowing reverseObjectEnumerator];
+  id element;
+  while (element = [enumerator nextObject]) {
+    [self removeIcon:element];
+    unsigned zero = 0;
+    [getNextPage_model(whichPage) insertIcon:element atIndex:&zero];
+  }
+  return sup;
+}
+*/
+%hook SBRootFolder 
+-(id)indexPathForFirstFreeSlotAvoidingFirstList:(BOOL)avoidFirstList
+{
+    int firstList = avoidFirstList ? 1 : 0;
+  id lists = [[SBIMINSTANCE rootFolder] lists];
+  for (int i=firstList; i < [lists count]; i++) {
+    id list = [[self lists] objectAtIndex:i];
+    int iconCount = realIconCount(list);
+    int maxIcons = [[pp(i) origins] count];
+    if (iconCount < maxIcons) {
+      return indexPath(i, iconCount);
+    } 
+  }
+  // Didn't find a non-full list -> create one
+  id emptyList = [[SBIMINSTANCE rootFolder] addEmptyList];
+  NSUInteger emptyListIndex = indexOfList(emptyList);
+  return indexPath(emptyListIndex, 0);
+}
+%end
+/*
 CHMethod1(id, SBRootFolder, indexPathForFirstFreeSlotAvoidingFirstList, BOOL, avoidFirstList) {
   int firstList = avoidFirstList ? 1 : 0;
   id lists = [[SBIMINSTANCE rootFolder] lists];
@@ -271,6 +318,7 @@ CHMethod1(id, SBRootFolder, indexPathForFirstFreeSlotAvoidingFirstList, BOOL, av
   NSUInteger emptyListIndex = indexOfList(emptyList);
   return indexPath(emptyListIndex, 0);
 }
+*/
 /**********************/
 #pragma mark "STARTUP"
 /**********************/
@@ -360,16 +408,63 @@ static void preparePerPageLayouts() {
   }
   perPageLayouts = [_layouts retain];
 }
-
+%hook SpringBoard
+-(void)applicationDidFinishLaunching:(id)application
+{
+  //prepareDefaultLayout();
+  //prepareExtrasLayout();
+  //preparePerPageLayouts();
+  %orig;
+  //if ((kCFCoreFoundationVersionNumber >= 550) && (kCFCoreFoundationVersionNumber <= 600))
+    //[[%c(ISIconSupport) sharedInstance] repairAndReloadIconState];
+}
+%end
+/*
 CHMethod1(void, SpringBoard, applicationDidFinishLaunching, id, application) {
   prepareDefaultLayout();
   prepareExtrasLayout();
   preparePerPageLayouts();
   CHSuper1(SpringBoard, applicationDidFinishLaunching, application);
   if ((kCFCoreFoundationVersionNumber >= 550) && (kCFCoreFoundationVersionNumber <= 600))
-    [[objc_getClass("ISIconSupport") sharedInstance] repairAndReloadIconState];
+    [[%c(ISIconSupport) sharedInstance] repairAndReloadIconState];
 }
-
+*/
+%hook SBIconModel 
+-(NSDictionary*)iconState 
+{
+    NSDictionary* iconState = %orig;
+  NSArray* remainder = [NSArray array];
+  NSArray* pages = [NSArray array];
+  NSArray* originals = [iconState objectForKey:@"iconLists"];
+  int i = 0;
+  for (NSArray* o in originals) {
+    int maxCount = [[pp(i) origins] count];
+    if ([o count] <= maxCount) {
+      pages = [pages arrayByAddingObject:o];
+    } else {
+      NSArray* p = [o subarrayWithRange:NSMakeRange(0,maxCount)];
+      NSArray* r = REMAINDER(o, maxCount);
+      pages = [pages arrayByAddingObject:p];
+      remainder = [remainder arrayByAddingObjectsFromArray:r];
+    }
+    i++;
+  }
+  while ([remainder count] > 0) {
+    int maxCount = [[pp(i) origins] count];
+    if ([remainder count] <= maxCount) {
+      pages = [pages arrayByAddingObject:remainder];
+      break;
+    } else {
+      NSArray* p = [remainder subarrayWithRange:NSMakeRange(0, maxCount)];
+      pages = [pages arrayByAddingObject:p];
+      remainder = REMAINDER(remainder, maxCount);
+      i++;
+    }
+  }
+  return [NSDictionary dictionaryWithObjectsAndKeys:pages, @"iconLists", [iconState objectForKey:@"buttonBar"], @"buttonBar", nil];
+}
+%end
+/*
 CHMethod0(NSDictionary*, SBIconModel, iconState) {
   NSDictionary* iconState = CHSuper0(SBIconModel, iconState);
   NSArray* remainder = [NSArray array];
@@ -402,11 +497,11 @@ CHMethod0(NSDictionary*, SBIconModel, iconState) {
   }
   return [NSDictionary dictionaryWithObjectsAndKeys:pages, @"iconLists", [iconState objectForKey:@"buttonBar"], @"buttonBar", nil];
 }
-
+*/
 /*******************************/
 #pragma mark "IN FOLDERS (iOS7+)"
 /*******************************/
-
+/*
 CHClassMethod1(int, SBFolderIconListView, iconRowsForInterfaceOrientation, int, interfaceOrientation) {
   return [extrasLayout iconRowsForInterfaceOrientation:interfaceOrientation];
 }
@@ -422,93 +517,16 @@ CHMethod1(CGPoint, SBFolderIconListView, originForIconAtCoordinate, SBIconCoordi
 }
 
 CHClassMethod0(int, SBFolderIcon, _maxIconsInGridImage) {
-  CGFloat iconWidth = ((CGSize)([CHClass(SBIconView) defaultIconSize])).width;
-  CGFloat iconHeight = ((CGSize)([CHClass(SBIconView) defaultIconSize])).height;
+  CGFloat iconWidth = ((CGSize)([%c(SBIconView) defaultIconSize])).width;
+  CGFloat iconHeight = ((CGSize)([%c(SBIconView) defaultIconSize])).height;
   // Thanks to ashikase for the fix
   // Without this, the folder icon breaks on any layout with less icons than the default icon dimensions
   return [extrasLayout iconRowsForInterfaceOrientation:0] * [extrasLayout iconRowsForInterfaceOrientation:0];
 }
-
+*/
 /**********************/
 #pragma mark "CONSTRUCTOR"
 /**********************/
-
-CHConstructor {
-  @autoreleasepool {
-    if (!isEnabled()) {
-      return;
-    }
-
-    BOOL runningSeven = kCFCoreFoundationVersionNumber > 800;
-
-    // IconSupport
-    dlopen("/Library/MobileSubstrate/DynamicLibraries/IconSupport.dylib", RTLD_NOW);
-    [[objc_getClass("ISIconSupport") sharedInstance] addExtension:@"net.r-ch.iconoclasm"];
-
-    CHLoadLateClass(SpringBoard);
-    CHLoadLateClass(SBIconListView);
-    CHLoadLateClass(SBRootIconListView);
-    CHLoadLateClass(SBFolderIconListView);
-    CHLoadLateClass(SBDockIconListView);
-    CHLoadLateClass(SBNewsstandIconListView);
-    CHLoadLateClass(SBIconModel);
-    CHLoadLateClass(SBIconListModel);
-    CHLoadLateClass(SBRootFolder);
-    CHLoadLateClass(SBIconController);
-    CHLoadLateClass(SBIconContentView);
-    CHLoadLateClass(SBIconView);
-    CHLoadLateClass(SBFolderIcon);
-
-    CHHook1(SpringBoard, applicationDidFinishLaunching);
-    if (!runningSeven)
-      CHClassHook1(SBIconListView, iconRowsForInterfaceOrientation);
-      CHClassHook1(SBIconListView, iconColumnsForInterfaceOrientation);
-      CHHook2(SBIconListView, originForIconAtX, Y);
-
-    if (freeformOn || perPageOn || runningSeven) {
-      // Add these on iOS 7 too because grid math is just wonky
-      CHHook1(SBIconListView, columnAtPoint);
-      CHHook1(SBIconListView, rowAtPoint);
-    }
-
-    CHRegisterClass(ICIconListView, SBIconListView) {
-      CHClassHook1(ICIconListView, iconRowsForInterfaceOrientation);
-      CHClassHook1(ICIconListView, iconColumnsForInterfaceOrientation);
-      CHHook2(ICIconListView, originForIconAtX, Y);
-
-      if (extrasFreeformOn || freeformOn) {
-        CHHook1(ICIconListView, columnAtPoint);
-        CHHook1(ICIconListView, rowAtPoint);
-      }
-    }
-
-    if (perPageOn) {
-      CHHook2(SBIconListModel, insertIcon, atIndex);
-      CHHook1(SBRootFolder, indexPathForFirstFreeSlotAvoidingFirstList);
-      CHHook0(SBIconModel, iconState);
-    }
-
-    // iOS 7
-    if (runningSeven) {
-      CHClassHook1(SBRootIconListView, iconRowsForInterfaceOrientation);
-      CHClassHook1(SBRootIconListView, iconColumnsForInterfaceOrientation);
-      CHHook1(SBRootIconListView, originForIconAtCoordinate);
-
-      if ((freeformOn || perPageOn) && !infinidockDylibSpotted()) {
-        CHHook0(SBDockIconListView, horizontalIconPadding);
-        CHHook0(SBDockIconListView, _additionalSideInsetToCenterIcons);
-      }
-      
-      if (!freeformOn && !perPageOn)
-        CHHook0(SBIconContentView, layoutSubviews);
-
-      if (extrasEnabled) {
-        CHClassHook0(SBFolderIcon, _maxIconsInGridImage);
-        CHClassHook1(SBFolderIconListView, iconRowsForInterfaceOrientation);
-        CHClassHook1(SBFolderIconListView, iconColumnsForInterfaceOrientation);
-        CHHook1(SBFolderIconListView, originForIconAtCoordinate);
-      }
-
-    }
-  }
+%ctor{
+  //if (NO) %init;
 }

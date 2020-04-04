@@ -1,0 +1,21 @@
+---
+package_name: Iconoclasm
+install_command: killall -9 backboardd
+Iconoclasm:
+    type: tweak
+    arc: -I./Iconoclasm -w
+    cflags: -ferror-limit=200
+    ldid: ldid
+    ldidflags: -Sentitlements.xml
+    files:
+        - $eval("ls Iconoclasm/*.mm")
+    logos_files:
+        - $eval("ls Iconoclasm/*.xm")
+IconoclasmPrefs:
+    dir: IconoclasmPrefs
+    type: bundle
+    arc: -w
+    frameworks:
+        - Preferences
+    files:
+        - IconoclasmPrefs.m

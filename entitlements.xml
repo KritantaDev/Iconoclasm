@@ -3,5 +3,7 @@
   <dict>
     <key>com.apple.backboard.client</key>
     <true/>
+    <key>com.apple.springboard-ui.client</key>
+    <true/>
   </dict>
 </plist>

@@ -17,10 +17,6 @@ static BOOL infiniboardDylibSpotted() {
 @implementation IconoclasmPrefsController
 
 -(void) respring:(id)unused {
-  if (kCFCoreFoundationVersionNumber < 790.00)
-    system("killall SpringBoard");
-  else
-    system("killall backboardd");
 }
 
 -(NSString*) navigationTitle {
