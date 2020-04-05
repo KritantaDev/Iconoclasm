@@ -1,11 +1,10 @@
-Package: net.r-ch.iconoclasm
-Name: Iconoclasm
-Version: 1.11
+Package: me.kritanta.iconoclast
+Name: Iconoclast
+Version: 1.0
 Architecture: iphoneos-arm
-Description: easily customizable icon layout framework
+Description: Easily customizable icon layout framework based on Iconoclasm
 Maintainer: Kritanta <kritanta@openpack.io>
-Author: Yanik Magnan <kirbykirbykirby@gmail.com>
+Author: Kritanta <kritanta@openpack.io>
 Section: Tweaks
 Pre-Depends: mobilesubstrate
-Depends: firmware (>= 4.3), preferenceloader, com.chpwn.iconsupport (>> 1.7.7)
-Conflicts: net.r-ch.fcsb, com.macciti.fiveirows, com.touchmania.fiveirows, com.touchmania.fiveirowsnorm
+Depends: firmware (>= 4.3), preferenceloader

@@ -298,7 +298,7 @@ static NSArray* originsArrayFromGridArrays(NSArray* c, NSArray* r) {
   int c;
   object_getInstanceVariable(iL, "_orientation", (void**)&orientation);
   Class sbi = kCFCoreFoundationVersionNumber < 675 ? objc_getClass("SBIcon") : objc_getClass("SBIconView");
-  CGSize iconSize = [sbi defaultIconSize];
+  CGSize iconSize = [sbi defaultIconImageSize];
   int previousMax = INT_MIN;
   // Cols
   if (self.landscapeCols)

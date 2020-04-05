@@ -174,7 +174,7 @@
   BOOL runningSeven = kCFCoreFoundationVersionNumber > 800;
   BOOL runningEight = kCFCoreFoundationVersionNumber > 1000;
   Class sbi = kCFCoreFoundationVersionNumber < 675 ? objc_getClass("SBIcon") : objc_getClass("SBIconView");
-  CGSize iconSize = [sbi defaultIconSize];
+  CGSize iconSize = [sbi defaultIconImageSize];
   int orientation; NSArray* _origins;
   orientation = [self currentOrientationForIconList:iL];
   if (self.landscapeOrigins != nil)

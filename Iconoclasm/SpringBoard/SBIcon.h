@@ -38,7 +38,7 @@
 @property(assign, getter=isInDock) BOOL inDock;
 @property(assign) BOOL allowJitter;
 @property(assign) BOOL isShowingCloseBox;
-+(CGSize)defaultIconSize;
++(CGSize)defaultIconImageSize;
 +(void)enqueueReusableIconImageView:(id)view;
 +(id)dequeueReusableIconImageView;
 +(id)_jitterPositionAnimation;
