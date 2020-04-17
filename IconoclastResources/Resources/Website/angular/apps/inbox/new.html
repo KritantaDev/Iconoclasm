@@ -1,0 +1,48 @@
+<div>
+  <!-- header -->
+  <div class="">
+    <div class="btn-group m-r-sm">
+      <a href class="btn btn-sm white w-xxs w-auto-xs" bs-tooltip data-placement="bottom" title="Save"><i class="fa fa-file"></i></a>
+      <a ui-sref="app.inbox.list" class="btn btn-sm white w-xxs w-auto-xs" bs-tooltip data-placement="bottom" title="Discard"><i class="fa fa-trash-o"></i></a>
+    </div>
+  </div>
+  <!-- / header -->
+  <div class="p">
+    <form name="newMail" class="form-horizontal m-t">
+      <div class="form-group row">
+        <label class="col-lg-2 form-control-label">To:</label>
+        <div class="col-lg-8">
+          <ui-select multiple ng-model="inbox.to" theme="bootstrap" ng-disabled="disabled">
+            <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+            <ui-select-choices group-by="someGroupFn" repeat="person in people">
+              <div ng-bind-html="person.name | highlight: $select.search"></div>
+              <small>
+                email: {{person.email}}
+                age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+              </small>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-2 form-control-label">Subject:</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" ng-model="mail.subject">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Content</label>
+        <div class="col-sm-10">
+          <div class="b-a">
+            <summernote ng-model="inbox.content" data-height="200"></summernote>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <button class="btn btn-info w-xs">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

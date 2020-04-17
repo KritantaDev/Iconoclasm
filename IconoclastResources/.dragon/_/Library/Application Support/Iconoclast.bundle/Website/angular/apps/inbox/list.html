@@ -1,0 +1,50 @@
+
+<a ui-sref="app.inbox.compose" class="md-btn md-fab md-fab-bottom-right pos-fix red"><i class="material-icons i-24 text-white">&#xe150;</i></a>
+<div>
+  <!-- header -->
+  <div class="m-b">
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-sm white"><i class="fa fa-chevron-left"></i></button>
+      <button type="button" class="btn btn-sm white"><i class="fa fa-chevron-right"></i></button>
+    </div>
+    <div class="btn-toolbar">
+      <div class="btn-group dropdown">
+        <button class="btn white btn-sm dropdown-toggle" data-toggle="dropdown">
+          <span class="dropdown-label">Filter</span>                    
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu text-left text-sm">
+          <a class="dropdown-item" ui-sref="app.inbox.list({fold:'unread'})">Unread</a>
+          <a class="dropdown-item" ui-sref="app.inbox.list({fold:'starred'})">Starred</a>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-sm white" data-toggle="tooltip" data-placement="bottom" data-title="Refresh" data-original-title="" title=""><i class="fa fa-refresh"></i></button>
+      </div>
+    </div>
+  </div>
+  <!-- / header -->
+
+  <!-- list -->
+  <div class="list white">
+    <div ng-repeat="inbox in inboxes | filter:fold" ng-class="labelClass(inbox.label)" class="list-item b-l b-l-2x">
+      <div class="list-left">
+        <span class="w-40 avatar">
+          <img ng-src="{{inbox.avatar}}">
+        </span>
+      </div>
+      <div class="list-body">
+        <div class="pull-right text-muted text-xs">
+          <span class="hidden-xs">{{ inbox.date | fromNow }}</span>
+          <i class="fa fa-paperclip ng-hide m-l-sm" ng-show="{{inbox.attach}}"></i>
+        </div>
+        <div>
+          <a ui-sref="app.inbox.item({id:inbox.id})" class="_500">{{inbox.subject}}</a>
+          <span class="label label-xs m-l-sm text-u-c">{{inbox.label}}</span>
+        </div>
+        <div class="text-ellipsis text-muted text-sm">{{inbox.content | limitTo:100}}</div>
+      </div>
+    </div>
+  </div>
+  <!-- / list -->
+</div>

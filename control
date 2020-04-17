@@ -1,8 +1,8 @@
 Package: me.kritanta.iconoclast
 Name: Iconoclast
-Version: 1.0
+Version: 1.0.2
 Architecture: iphoneos-arm
-Description: Easily customizable icon layout framework based on Iconoclasm
+Description: Easily customizable icon layout framework based on Iconoclast
 Maintainer: Kritanta <kritanta@openpack.io>
 Author: Kritanta <kritanta@openpack.io>
 Section: Tweaks

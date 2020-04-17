@@ -1,0 +1,44 @@
+---
+layout: base.html
+---
+  <!-- aside -->
+  <div id="aside" class="app-aside modal fade folded md show-text nav-dropdown">
+    <div class="left navside black dk" layout="column">
+      <div class="navbar no-radius">
+        {{>navbar.brand}}
+      </div>
+      <div flex class="hide-scroll">
+          <nav class="scroll nav-active-{{app.setting.theme.primary}}">
+            {{>nav.html}}
+          </nav>
+      </div>
+      <div flex-no-shrink>
+        <div ui-include="'../views/blocks/aside.top.1.html'"></div>
+      </div>
+    </div>
+  </div>
+  <!-- / aside -->
+  
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z3" role="main">
+    <div class="app-header white box-shadow">
+        {{>header}}
+    </div>
+    <div class="app-footer">
+      {{>footer}}
+    </div>
+    <div ui-view class="app-body" id="view">
+      
+<!-- ############ PAGE START-->
+{{> body}}
+<!-- ############ PAGE END-->
+
+    </div>
+  </div>
+  <!-- / -->
+
+  <!-- theme switcher -->
+  <div id="switcher">
+    {{>switcher.html}}
+  </div>
+  <!-- / -->

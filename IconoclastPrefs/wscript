@@ -1,0 +1,13 @@
+def build(bld):
+  print(' → building preference bundle')
+  bld(source='IconoclastPrefs.m')
+  bld(source='IconoclastPrefs.o',
+      target='IconoclastPrefs', 
+      rule='export DEVELOPER_DIR=${XCODE_PATH}; xcrun --sdk iphoneos${SDK_VERSION} ${C_COMPILER_EXEC} -arch ${ARCHITECTURE} ${GLOBAL_LDFLAGS} -framework UIKit -framework Preferences -bundle ${SRC} -o ${TGT}')
+
+  #bld.install_files('${PREFIX}/System/Library/PreferenceBundles/IconoclastPrefs.bundle', 'IconoclastPrefs')
+
+def lipo(ctx):
+  ctx.exec_command("strip -X build/armv7/IconoclastPrefs/IconoclastPrefs")
+  ctx.exec_command("strip -X build/arm64/IconoclastPrefs/IconoclastPrefs")
+  ctx.exec_command('lipo -create build/arm64/IconoclastPrefs/IconoclastPrefs build/armv7/IconoclastPrefs/IconoclastPrefs -output me.kritanta.iconoclast/System/Library/PreferenceBundles/IconoclastPrefs.bundle/IconoclastPrefs')

@@ -1,0 +1,66 @@
+<div class="padding">
+    <div class="row m-b">
+      <div class="col-sm-4 m-b-sm">
+        <button type="button" class="btn btn-sm white" data-toggle="modal" data-target="#list" ui-toggle-class="modal-open-aside" ui-target="body">
+          <i class="fa fa-bars m-r-xs"></i> List
+        </button>
+        <button type="button" tooltip="Double click on calendar day to create event" class="btn btn-sm primary" ng-click="addEvent()">
+          <i class="fa fa-plus m-r-xs"></i> Add
+        </button>
+      </div>
+      <div class="col-sm-8 text-sm-right">
+        <button type="button" class="btn btn-sm white" ng-click="today()">today</button>
+        <div class="btn-group m-l-xs">
+          <button class="btn btn-sm white" ng-click="changeView('agendaDay')">Day</button>
+          <button class="btn btn-sm white" ng-click="changeView('agendaWeek')">Week</button>
+          <button class="btn btn-sm white" ng-click="changeView('month')">Month</button>
+        </div>
+      </div>
+    </div>
+    <div class="pos-rlt">
+      <div class="fc-overlay">
+        <div class="panel dark-white b-a pos-rlt">
+          <span class="arrow b-white"></span>
+          <div class="h5 _300 m-b-sm b-b p-b-sm">{{event.title}}</div>
+          <div>
+            <i class="fa fa-fw fa-calendar-o text-muted m-r-xs"></i> {{event.start | date:'medium'}}
+          </div>
+          <div class="ng-hide" ng-show='event.end'>
+            <i class="fa fa-fw fa-clock-o text-muted m-r-xs"></i> {{event.end | date:'medium'}}
+          </div>
+          <div class="ng-hide" ng-show='event.location'>
+            <i class="fa fa-fw fa-map-marker text-muted m-r-xs"></i> {{event.location}}
+          </div>
+          <div class="m-t-sm">{{event.info}}</div>
+          <div class="m-t-sm">{{event.url}}</div>
+        </div>
+      </div>
+      <div class="calendar" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+    </div>
+</div>
+
+<div class="modal fade inactive" id="list" data-backdrop="false">
+  <div class="right w-xxl white b-l">
+      <div class="row-col">
+        <a data-dismiss="modal" class="pull-right text-muted text-lg p-a-sm m-r-sm">&times;</a>
+        <div class="p-a b-b">
+          <strong>List</strong>
+        </div>
+        <div class="row-row dker">
+          <div class="row-body">
+            <div class="row-inner">
+              <div class="p-a">
+                <div class="list-group">
+                  <div ng-repeat="e in events" class="list-group-item">
+                    <input ng-model="e.title" class="form-control no-border no-bg p-a-0 text-sm">
+                    <a class="pull-right text-xs" ng-click="remove($index)"><i class="fa fa-trash-o"></i></a>
+                    <div class="text-xs"><span class="w-8 b-a inline rounded m-r-sm {{e.className[0]}}"></span>{{e.start | date:"MMM dd"}} <span ng-show="e.end">-</span> {{e.end | date:"MMM dd"}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

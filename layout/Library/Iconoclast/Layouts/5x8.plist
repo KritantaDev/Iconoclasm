@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>OriginalScale</key>
+	<dict>
+		<key>width</key>
+		<integer>460</integer>
+		<key>height</key>
+		<integer>600</integer>
+	</dict>
+	<key>Cols</key>
+	<array>
+		<integer>40</integer>
+		<integer>120</integer>
+		<integer>200</integer>
+		<integer>280</integer>
+		<integer>360</integer>
+	</array>
+	<key>Rows</key>
+	<array>
+		<integer>67</integer>
+		<integer>130</integer>
+		<integer>193</integer>
+		<integer>256</integer>
+		<integer>319</integer>
+		<integer>382</integer>
+		<integer>445</integer>
+		<integer>508</integer>
+	</array>
+</dict>
+</plist>

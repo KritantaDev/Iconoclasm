@@ -1,10 +1,10 @@
-# Iconoclasm
+# Iconoclast
 
-*Iconoclasm* is a tweak that lets you do more with your iPhone's home screen. It was sold on the Cydia Store from 2009 to 2015, and now it is open source for others who wish to use its code in their own similar products. Please read [this page][eol] for more details on what's going on with the project.
+*Iconoclast* is a tweak that lets you do more with your iPhone's home screen. It was sold on the Cydia Store from 2009 to 2015, and now it is open source for others who wish to use its code in their own similar products. Please read [this page][eol] for more details on what's going on with the project.
 
-## Building Iconoclasm
+## Building Iconoclast
 
-*Iconoclasm* predates Theos, which is probably the most commonly used build system in the jailbreak community today. For a variety of reasons, I rolled my own build script with *waf*, which you will need installed if you want to run the build scripts. I usually just this line in the root of my repo:
+*Iconoclast* predates Theos, which is probably the most commonly used build system in the jailbreak community today. For a variety of reasons, I rolled my own build script with *waf*, which you will need installed if you want to run the build scripts. I usually just this line in the root of my repo:
 
 ```waf distclean configure build_armv7 build_arm64 lipo package -p```
 
@@ -12,7 +12,7 @@ You will almost definitely need to tweak the waf file to point to the SDK you wi
 
 ## This Is A Huge Mess
 
-This code hasn't aged very well. I wouldn't recommend building off of the Iconoclasm project as a base, but rather using components of the Iconoclasm code or ideas within it to achieve similar or identical results in a different code base.
+This code hasn't aged very well. I wouldn't recommend building off of the Iconoclast project as a base, but rather using components of the Iconoclast code or ideas within it to achieve similar or identical results in a different code base.
 
 If you need some help understanding responsibilities in the code so you can make your way around easily:
 
@@ -44,5 +44,5 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[eol]: http://r-ch.net/iconoclasm-eol.html
+[eol]: http://r-ch.net/iconoclast-eol.html
 [ch]: https://github.com/rpetrich/CaptainHook

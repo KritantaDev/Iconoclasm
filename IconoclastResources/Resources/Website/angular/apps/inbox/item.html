@@ -1,0 +1,58 @@
+<div>
+  <!-- header -->
+  <div class="m-b">
+    <a ui-sref="app.inbox.list" class="btn btn-sm white w-xxs m-r-sm" bs-tooltip data-placement="bottom" title="Back to Inbox"><i class="fa fa-long-arrow-left"></i></a>
+    <div class="btn-group pos-stc m-r-sm">
+      <button class="btn btn-sm white w-xxs w-auto-xs" bs-tooltip data-placement="bottom" title="Delete" ng-click="removeItem(item)"><i class="fa fa-trash-o"></i></button>
+    </div>
+    <div class="btn-group pos-stc">
+      <div class="btn-group">
+        <button class="btn btn-sm white w-xxs w-auto-xs" data-toggle="dropdown" bs-tooltip data-placement="bottom" title="Move to"><i class="fa fa-fw fa-tag"></i> <span class="caret"></span></button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href ng-repeat="label in labels" ng-click="updateItem(item, label.filter)">
+            <i class="fa m-r-sm fa-circle text-xs" color="{{label.color}}" label-color ></i>
+            {{label.name}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / header -->
+  <div class="b-b">
+    <h2 class="_300">{{item.subject}}</h2>
+  </div>
+  <div class="p-y">
+    <img ng-src="{{item.avatar}}" class="img-circle w-32 m-r-sm">
+    from <a href>{{item.from}}</a> <span class="text-xs">on {{item.date}}</span>
+  </div>
+  <div class="p-y">
+    {{item.content}}
+  </div>
+  <div class="p-y">
+    <div ng-repeat="attach in item.attach" class="panel b-a inline m-r-sm m-b-sm bg-light">
+      <div class="p-a-xs b-b"><i class="fa fa-paperclip"></i> {{attach.name}}</div>
+      <div class="p-a-xs w-sm lt">
+        <a ng-href="{{attach.url}}"><img ng-src="{{attach.url}}" class="w-full"></a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="box">
+      <div class="box-header ng-show" ng-hide="reply">
+        <div class="m-b-lg">
+        Click here to <a href class="text-u-l" ng-click="reply=!reply">Reply</a> or <a href class="text-u-l" ng-click="reply=!reply">Forward</a>
+        </div>
+      </div>
+      <div class="ng-hide" ng-show="reply">
+        <div class="box-header b-b">
+          {{item.from}}
+        </div>
+        <div class="box-body" contenteditable="true" style="min-height:100px"></div>
+        <div class="box-footer">
+          <button class="btn white pull-right" ng-click="reply=!reply"><i class="fa fa-trash-o"></i></button>
+          <button class="btn info w-xs">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

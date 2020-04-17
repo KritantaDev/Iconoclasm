@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="192.168.1.116" id="32228985-0364-4e25-a4bf-abd6f47347ca" port="22" customName="iPhone" nameFormat="CUSTOM" username="root" />
+    </configs>
+  </component>
+</project>

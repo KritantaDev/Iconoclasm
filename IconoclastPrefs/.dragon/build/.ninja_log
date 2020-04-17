@@ -1,0 +1,25 @@
+# ninja log v5
+321	327	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+306	321	1586485338111407815	.dragon/_/Library/PreferenceBundles/IconoclastPrefs.bundle/IconoclastPrefs	3e84e166477c5b90
+277	306	1586485338097136697	.dragon/sign/.dragon/_/Library/PreferenceBundles/IconoclastPrefs.bundle/IconoclastPrefs.unsigned	a0a50c9b27ae133f
+2	277	1586485338066969366	.dragon/sign/.dragon/_/Library/PreferenceBundles/IconoclastPrefs.bundle/IconoclastPrefs.unsym	bb1d19fe3e32b524
+0	2375	1586356206645178392	.dragon/build/NeuToggle.m.o	d61590f7a794b24f
+0	2174	1586356206444299328	.dragon/build/IconoclastPrefs.m.o	17246f4171ee0e52
+0	2131	1586356206400417986	.dragon/build/NeuLinkListCell.m.o	c0a4687411f3ddb9
+2	15	1586485337805883755	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+0	12	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	15	1586485492844103345	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+0	9	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	12	1586485783382618155	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+0	9	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	12	1586486874892047596	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+1	8	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	11	1586486910517129743	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+1	9	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	12	1586486998825730949	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+1	11	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+1	14	1586487090033019657	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+1	11	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	13	1586487117950474515	.dragon/build/trash/bundles	1bc0f87ee5ecc93b
+1	8	0	.dragon/build/trash/stage	9c6c0e8e4aa2499c
+0	11	1586487147623987931	.dragon/build/trash/bundles	1bc0f87ee5ecc93b

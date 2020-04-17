@@ -1,0 +1,26 @@
+<div class="row-col">
+	<form ng-submit="addItem()" class="box light lt m-a-0">
+	  <input placeholder="Quick add note" ng-model="newItem" autofocus class="form-control p-a no-border no-bg">
+	</form>
+	<div class="row-row">
+	    <div class="row-body">
+	      <div class="row-inner padding">
+			<div class="card-columns">
+			  <div ng-repeat="item in items | filter:app.search.content | orderBy:'date':true track by $index" ui-sref="app.note.item({id: item.id})" class="card card-block b-a pointer" ng-class="item.color">
+			    {{item.title}}
+			  </div>
+			</div>
+			<div ng-hide="items.length">
+				<div class="p-a-lg text-center animated fadeInUp">
+					<span class="text-3x">
+						<i class="material-icons text-2x text-white">&#xe89c;</i>
+					</span>
+					<h4 class="_300 text-muted">
+						Create your first note!
+					</h4>
+				</div>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>

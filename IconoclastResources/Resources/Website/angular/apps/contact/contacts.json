@@ -1,0 +1,160 @@
+{
+  "items":[
+    {
+      "id": 13,
+      "group" : "Partner",
+      "first": "Bertina",
+      "last": "Robert",
+      "company": "",
+      "mobile": "121 364 135",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a3.jpg"
+    },
+    {
+      "id": 12,
+      "group" : "Coworkers",
+      "first": "Alexandra",
+      "last": "Galton",
+      "company": "Google Inc.",
+      "mobile": "102 394 821",
+      "home": "(021) 9876 9485",
+      "work": "(021) 2130 3049",
+      "notes": "",
+      "avatar": "../assets/images/a0.jpg"
+    },
+    {
+      "id": 11,
+       "group" : "Family",
+      "first": "Angela",
+      "last": "Oscar",
+      "company": "Max Inc.",
+      "mobile": "100 364 135",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a1.jpg"
+    },
+    {
+      "id": 10,
+      "group" : "Friends",
+      "first": "Annabelle",
+      "last": "",
+      "company": "",
+      "mobile": "324 123 123",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a2.jpg"
+    },
+    {
+      "id": 9,
+      "group" : "Friends",
+      "first": "Brenda",
+      "last": "Lanny",
+      "company": "",
+      "mobile": "765 434 565",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a4.jpg"
+    },
+    {
+      "id": 8,
+      "group" : "Group",
+      "first": "Britney",
+      "last": "Patricia",
+      "company": "",
+      "mobile": "432 364 455",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a5.jpg"
+    },
+    {
+      "id": 7,
+      "group" : "Friends",
+      "first": "Blanche",
+      "last": "Julian",
+      "company": "",
+      "mobile": "433 364 234",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a6.jpg"
+    },
+    {
+      "id": 6,
+      "group" : "Group",
+      "first": "Deborah",
+      "last": "Darryl",
+      "company": "",
+      "mobile": "332 431 223",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a7.jpg"
+    },
+    {
+      "id": 5,
+      "group" : "Group",
+      "first": "Elizabeth",
+      "last": "",
+      "company": "",
+      "mobile": "543 453 890",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a8.jpg"
+    },
+    {
+      "id": 4,
+      "group" : "Partners",
+      "first": "Emily",
+      "last": "Jolyon",
+      "company": "",
+      "mobile": "656 565 789",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a9.jpg"
+    },
+    {
+      "id": 3,
+      "group" : "Partners",
+      "first": "Gertrude",
+      "last": "",
+      "company": "",
+      "mobile": "434 987 898",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a8.jpg"
+    },
+    {
+      "id": 2,
+      "group" : "Family",
+      "first": "Gwynne",
+      "last": "Rufus",
+      "company": "",
+      "mobile": "098 888 897",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a8.jpg"
+    },
+    {
+      "id": 1,
+      "group" : "Coworkers",
+      "first": "Octavia",
+      "last": "Swaine",
+      "company": "",
+      "mobile": "854 656 879",
+      "home": "(021) 1234 8755",
+      "work": "(021) 9000 9877",
+      "notes": "",
+      "avatar": "../assets/images/a8.jpg"
+    }
+  ]
+}

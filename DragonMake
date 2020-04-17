@@ -1,24 +1,44 @@
 ---
-package_name: Iconoclasm
-install_command: killall -9 backboardd
-Iconoclasm:
+package_name: Iconoclast
+install_command: sbreload; killall -9 IconoclastEditorServer
+Iconoclast:
     type: tweak
-    arc: -I./Iconoclasm -w
-    cflags: -ferror-limit=200
+    cflags: -ferror-limit=200 -I./Iconoclast -w -includePrefix.h
     ldid: ldid
     ldidflags: -Sentitlements.xml
-    files:
-        - $eval("ls Iconoclasm/*.mm")
     logos_files:
-        - $eval("ls Iconoclasm/*.xm")
-IconoclasmPrefs:
-    dir: IconoclasmPrefs
+        - $eval("ls Iconoclast/*.xm")
+    files:
+        - $eval("ls Iconoclast/*.m")
+IconoclastPrefs:
+    dir: IconoclastPrefs
     type: bundle
-    arc: -w
     frameworks:
         - Preferences
     files:
-        - IconoclasmPrefs.m
+        - IconoclastPrefs.m
+        - NeuToggle.m
+        - NeuLinkListCell.m
     stage: 
         - mkdir -p .dragon/_/Library/PreferenceLoader/Preferences/
         - cp entry.plist .dragon/_/Library/PreferenceLoader/Preferences/$name.plist
+IconoclastEditorServer:
+    dir: IconoclastEditorServer
+    type: cli
+    installLocation: /Library/Iconoclast/
+    cflags: -I./ -I./GCDWebServer/Core -I./GCDWebServer/Requests -I./GCDWebServer/Responses
+    frameworks:
+        - UIKit
+        - CoreFoundation
+        - Foundation
+        - CFNetwork
+        - CoreServices
+    ldflags: -lz
+    files:
+        - $eval("find ./IconoclastEditorServer -name '*.m'")
+IconoclastResources:
+    dir: IconoclastResources
+    type: bundle
+    nocomp: 1
+    installLocation: "/Library/Application\ Support/Iconoclast.bundle"
+

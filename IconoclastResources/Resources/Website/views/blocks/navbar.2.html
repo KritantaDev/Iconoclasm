@@ -1,0 +1,56 @@
+  <div class="navbar navbar-toggleable-sm flex-row align-items-center">
+        <a data-toggle="collapse" data-target="#navbar-2" class="navbar-item hidden-md-up mr-3">
+          <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <div ui-include="'../views/blocks/navbar.brand.text.html'"></div>
+
+        <!-- navbar collapse -->
+        <div class="collapse navbar-collapse" id="navbar-2">
+          <!-- link -->
+          <ul class="nav navbar-nav text-accent-hover">
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Video</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Music</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Photo</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Blog</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Shop</span> 
+              </a>
+            </li>
+          </ul>
+          <!-- / link -->
+          <div ui-include="'../views/blocks/navbar.form.html'"></div>
+        </div>
+        <!-- / navbar collapse -->
+
+        <!-- nabar right -->
+        <ul class="nav navbar-nav flex-row align-items-center ml-auto">
+          <li class="nav-item dropdown">
+            <a href class="nav-link dropdown-toggle text-ellipsis" data-toggle="dropdown">
+              <span class="avatar w-32">
+                <img src="../assets/images/a0.jpg" alt="...">
+                <i class="on b-white bottom"></i>
+              </span>
+              <span class="hidden-sm-down _500">Jean</span>
+            </a>
+            <div ui-include="'../views/blocks/dropdown.user.html'"></div>
+          </li>
+        </ul>
+        <!-- / navbar right -->
+  </div>

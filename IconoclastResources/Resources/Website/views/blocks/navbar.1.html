@@ -1,0 +1,69 @@
+  <div class="navbar navbar-toggleable-sm flex-row align-items-center">
+        <a data-toggle="collapse" data-target="#navbar-1" class="navbar-item mr-3 hidden-md-up">
+          <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <div ui-include="'../views/blocks/navbar.brand.html'"></div>
+
+        <!-- navbar collapse -->
+        <div class="collapse navbar-collapse" id="navbar-1">
+          <!-- link and dropdown -->
+          <ul class="nav navbar-nav text-{{app.setting.theme.primary}}-hover">
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Video</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Music</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Photo</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Blog</span> 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href>
+                <span class="nav-text">Shop</span> 
+              </a>
+            </li>
+          </ul>
+          <!-- / link and dropdown -->
+        </div>
+        <!-- / navbar collapse -->
+
+        <!-- nabar right -->
+        <ul class="nav navbar-nav flex-row align-items-center ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href data-toggle="dropdown">
+              <i class="material-icons">&#xe8b6;</i>
+            </a>
+            <div class="dropdown-menu text-color p-a animated fadeInUp pull-right">
+              <div ui-include="'../views/blocks/navbar.form.html'"></div>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href data-toggle="dropdown">
+              <span>Login</span>
+            </a>
+            <div ui-include="'../views/blocks/dropdown.form.html'"></div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href>
+              <span class="hidden-xs-down btn btn-sm rounded btn-outline b-danger text-u-c _600">
+                Sign Up
+              </span>
+              <span class="hidden-sm-up ">
+                <i class="material-icons">&#xe7fd;</i>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <!-- / navbar right -->
+  </div>

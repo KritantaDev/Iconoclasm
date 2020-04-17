@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string></string>
+			<key>footerText</key>
+			<string>Do things you aren't supposed to with your icons</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string></string>
+			<key>footerText</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>switcher</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>KRNeuToggleBar</string>
+			<key>height</key>
+			<string>145</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>CurrentLayout</string>
+			<key>default</key>
+			<string>Checkerboard</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Layout</string>
+			<key>label</key>
+			<string>Layout</string>
+			<key>key</key>
+			<string>CurrentLayout</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>60</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page0</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 1</string>
+			<key>label</key>
+			<string>Page 1</string>
+			<key>key</key>
+			<string>PerPageLayout-Page0</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>60</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page1</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 2</string>
+			<key>label</key>
+			<string>Page 2</string>
+			<key>key</key>
+			<string>PerPageLayout-Page1</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page2</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 3</string>
+			<key>label</key>
+			<string>Page 3</string>
+			<key>key</key>
+			<string>PerPageLayout-Page2</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page3</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 4</string>
+			<key>label</key>
+			<string>Page 4</string>
+			<key>key</key>
+			<string>PerPageLayout-Page3</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page4</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 5</string>
+			<key>label</key>
+			<string>Page 5</string>
+			<key>key</key>
+			<string>PerPageLayout-Page4</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page5</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 6</string>
+			<key>label</key>
+			<string>Page 6</string>
+			<key>key</key>
+			<string>PerPageLayout-Page5</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page6</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 7</string>
+			<key>label</key>
+			<string>Page 7</string>
+			<key>key</key>
+			<string>PerPageLayout-Page6</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page7</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 8</string>
+			<key>label</key>
+			<string>Page 8</string>
+			<key>key</key>
+			<string>PerPageLayout-Page7</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page8</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 9</string>
+			<key>label</key>
+			<string>Page 9</string>
+			<key>key</key>
+			<string>PerPageLayout-Page8</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page9</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 10</string>
+			<key>label</key>
+			<string>Page 10</string>
+			<key>key</key>
+			<string>PerPageLayout-Page9</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>PerPageLayout-Page10</string>
+			<key>default</key>
+			<string>Five-Column SB (5x4)</string>
+			<key>defaults</key>
+			<string>me.kritanta.iconoclast</string>
+			<key>name</key>
+			<string>Page 11+</string>
+			<key>label</key>
+			<string>Page 11+</string>
+			<key>key</key>
+			<string>PerPageLayout-Page10</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>valuesDataSource</key>
+			<string>layouts</string>
+			<key>titlesDataSource</key>
+			<string>layouts</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>cellClass</key>
+			<string>KRNeuLinkListCell</string>
+			<key>height</key>
+			<string>50</string>
+			<key>PostNotification</key>
+			<string>me.kritanta.iconoclast/Prefs</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Iconoclast</string>
+</dict>
+</plist>
